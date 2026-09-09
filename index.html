@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1C1C1C" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="icon" href="icon.svg" />
+  <title>KOVBASA · Години</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="app">
+      <div class="brand">KOVBASA<small>облік змін шефа</small></div>
+      <div id="todayLabel" style="font-size:12px;color:var(--mute)"></div>
+    </header>
+    <section id="page-home">
+      <div class="card clock">
+        <div class="time" id="liveClock">00:00:00</div>
+        <div class="sub" id="liveDate"></div>
+        <div class="status-pill" id="statusPill">зміна не почата</div>
+        <button class="btn btn-start" id="toggleShift">Почати зміну</button>
+        <button class="btn btn-ghost" id="openManual">Додати зміну вручну</button>
+      </div>
+      <div class="grid2">
+        <div class="stat"><span>Цей місяць, год</span><b id="mHours">0</b></div>
+        <div class="stat"><span>Цей місяць, грн</span><b id="mPay">0</b></div>
+      </div>
+    </section>
+    <section id="page-log" class="hidden">
+      <div class="card">
+        <h2>Журнал</h2>
+        <label>Місяць</label>
+        <input type="month" id="monthFilter" />
+        <div id="logList"></div>
+      </div>
+    </section>
+    <section id="page-add" class="hidden">
+      <div class="card">
+        <h2 id="formTitle">Нова зміна</h2>
+        <input type="hidden" id="editId" />
+        <label>Дата</label>
+        <input type="date" id="fDate" />
+        <div class="grid2">
+          <div><label>Початок</label><input type="time" id="fStart" /></div>
+          <div><label>Кінець</label><input type="time" id="fEnd" /></div>
+        </div>
+        <div class="grid2">
+          <div><label>Перерва, хв</label><input type="number" id="fBreak" min="0" step="5" /></div>
+          <div>
+            <label>Тип дня</label>
+            <select id="fType">
+              <option value="weekday">Будень</option>
+              <option value="weekend">Вихідний</option>
+              <option value="holiday">Свято</option>
+            </select>
+          </div>
+        </div>
+        <label>Що робив</label>
+        <textarea id="fNote" placeholder="копчення, фарш, пакування…"></textarea>
+        <div class="hint" id="previewPay"></div>
+        <button class="btn btn-start" id="saveShift">Зберегти зміну</button>
+        <button class="btn btn-ghost" id="cancelForm">Назад</button>
+      </div>
+    </section>
+    <section id="page-settings" class="hidden">
+      <div class="card">
+        <h2>Ставки</h2>
+        <label>Базова ставка, грн / год</label>
+        <input type="number" id="sRate" min="0" step="1" />
+        <label>Коефіцієнт понаднормових</label>
+        <input type="number" id="sOt" min="1" step="0.1" />
+        <label>Коефіцієнт вихідний / свято</label>
+        <input type="number" id="sHol" min="1" step="0.1" />
+        <label>Норма годин на день</label>
+        <input type="number" id="sNorm" min="1" step="0.5" />
+        <label>Перерва за замовчуванням, хв</label>
+        <input type="number" id="sBreak" min="0" step="5" />
+        <button class="btn btn-start" id="saveSettings">Зберегти налаштування</button>
+        <p class="hint">Дані живуть у цьому телефоні / браузері.</p>
+        <button class="btn btn-ghost" id="exportJson">Експорт журналу (JSON)</button>
+        <button class="btn btn-ghost" id="exportCsv">Експорт у CSV</button>
+        <label>Імпорт JSON</label>
+        <input type="file" id="importFile" accept="application/json" />
+      </div>
+    </section>
+  </div>
+  <nav class="tabs">
+    <button data-page="home" class="active">Зміна</button>
+    <button data-page="log">Журнал</button>
+    <button data-page="add">+ Запис</button>
+    <button data-page="settings">Ставки</button>
+  </nav>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
