@@ -1,0 +1,19 @@
+{
+  "name": "KOVBASA Години",
+  "short_name": "KOVBASA",
+  "description": "Облік робочих змін",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1C1C1C",
+  "theme_color": "#1C1C1C",
+  "lang": "uk",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
