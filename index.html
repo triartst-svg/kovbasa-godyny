@@ -29,15 +29,17 @@
         <button class="btn btn-ghost" id="openManual">Додати зміну вручну</button>
       </div>
       <div class="grid2">
-        <div class="stat"><span>Цей місяць, год</span><b id="mHours">0</b></div>
-        <div class="stat"><span>Цей місяць, грн</span><b id="mPay">0</b></div>
+        <div class="stat"><span>Цей період, год</span><b id="mHours">0</b></div>
+        <div class="stat"><span>Цей період, грн</span><b id="mPay">0</b></div>
       </div>
+      <p class="hint" id="periodHint" style="margin:10px 4px 0"></p>
+      <button class="btn btn-ghost" id="closePeriod">Виплачено — закрити період</button>
     </section>
     <section id="page-log" class="hidden">
       <div class="card">
         <h2>Журнал</h2>
-        <label>Місяць</label>
-        <input type="month" id="monthFilter" />
+        <label>Період</label>
+        <select id="periodFilter"></select>
         <div id="logList"></div>
       </div>
     </section>
